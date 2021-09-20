@@ -8,22 +8,26 @@ import Home from './pages/Home';
 import ProfilePage from './pages/ProfilePage';
 import SignIn from './pages/SignIn';
 import { ProfileProvider } from './context/profile.context';
+import DashboardButton from './components/sidenavbar/DashboardButton';
 
 function App() {
   return (
-    <ProfileProvider>
-      <Switch className="App">
-        <PrivateRoute path="/profile">
-          <ProfilePage />
-        </PrivateRoute>
-        <PublicRoute path="/signin">
-          <SignIn />
-        </PublicRoute>
-        <PublicRoute path="/">
-          <Home />
-        </PublicRoute>
-      </Switch>
-    </ProfileProvider>
+    <div>
+      <DashboardButton />
+      <ProfileProvider>
+        <Switch className="App">
+          <PublicRoute path="/signin">
+            <SignIn />
+          </PublicRoute>
+          <PrivateRoute path="/profile">
+            <ProfilePage />
+          </PrivateRoute>
+          <PublicRoute path="/">
+            <Home />
+          </PublicRoute>
+        </Switch>
+      </ProfileProvider>
+    </div>
   );
 }
 

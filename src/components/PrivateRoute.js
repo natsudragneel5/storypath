@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router';
-import { Container, Loader } from 'rsuite';
+import { Alert, Container, Loader } from 'rsuite';
 import { useProfile } from '../context/profile.context';
 // eslint-disable-next-line arrow-body-style
 const PrivateRoute = ({ children, ...routeProps }) => {
@@ -13,6 +13,7 @@ const PrivateRoute = ({ children, ...routeProps }) => {
     );
   }
   if (!profile && !isLoading) {
+    Alert.error('Action requires signin', 4000);
     return <Redirect to="/signin" />;
   }
   return <Route {...routeProps}>{children}</Route>;

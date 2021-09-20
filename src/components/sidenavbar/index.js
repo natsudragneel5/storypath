@@ -1,21 +1,38 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Icon, Nav, Sidenav } from 'rsuite';
 
 // eslint-disable-next-line arrow-body-style
-const SidNavBar = ({ activeItem }) => {
+const SidNavBar = ({ close }) => {
+  const location = useLocation();
   return (
     <>
       <Sidenav>
-        <Sidenav.Body>
-          <Nav>
-            <Nav.Item eventKey="1" active={activeItem === 'profile'}>
-              <Icon icon="profile" /> Profile
-            </Nav.Item>
-            <Nav.Item eventKey="1" active={activeItem === 'home'}>
-              <Icon icon="home" /> Home
-            </Nav.Item>
-          </Nav>
-        </Sidenav.Body>
+        <Nav
+          appearance="subtle"
+          vertical
+          reversed
+          activeKey={location.pathname}
+        >
+          <Nav.Item
+            componentClass={Link}
+            to="/profile"
+            eventKey={'/profile'}
+            onSelect={close}
+          >
+            <Icon icon="profile" />
+            Profile
+          </Nav.Item>
+          <Nav.Item
+            componentClass={Link}
+            to="/"
+            eventKey={'/'}
+            onSelect={close}
+          >
+            <Icon icon="home" />
+            Home
+          </Nav.Item>
+        </Nav>
       </Sidenav>
     </>
   );

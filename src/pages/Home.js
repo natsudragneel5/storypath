@@ -1,6 +1,5 @@
 import React from 'react';
 import { Col, Grid, Row } from 'rsuite';
-import DashboardToggle from '../components/sidenavbar/DashboardToggle';
 
 // eslint-disable-next-line arrow-body-style
 const Home = () => {
@@ -8,7 +7,7 @@ const Home = () => {
     <Grid fluid className="h-100 pt-2">
       <Row>
         <Col xs={24} md={8}>
-          <DashboardToggle activeItem="home" />
+          This is home
         </Col>
       </Row>
     </Grid>
