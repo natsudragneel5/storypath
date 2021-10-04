@@ -19,7 +19,14 @@ body,
 #root > div {
   height: 100%;
 }
-
+.align-left {
+  margin-left: 0;
+  margin-right: auto;
+}
+.align-right {
+  margin-left: auto;
+  margin-right: 0;
+}
 .custom-scroll {
   &::-webkit-scrollbar {
     width: 4px;

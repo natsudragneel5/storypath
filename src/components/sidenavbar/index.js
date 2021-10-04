@@ -1,13 +1,20 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Icon, Nav, Sidenav } from 'rsuite';
+import { Link } from 'react-router-dom';
+import { Button, Drawer, Icon, Nav } from 'rsuite';
+import ProviderBlock from './ProviderBlock';
 
 // eslint-disable-next-line arrow-body-style
-const SidNavBar = ({ close }) => {
-  const location = useLocation();
+const SidNavBar = ({ profile, location, onSignOut, close }) => {
+  const { name, avatar, uid } = profile;
   return (
     <>
-      <Sidenav>
+      <Drawer.Header>
+        <ProviderBlock />
+        <Button block color="red" onClick={onSignOut}>
+          Sign out
+        </Button>
+      </Drawer.Header>
+      <Drawer.Body>
         <Nav
           appearance="subtle"
           vertical
@@ -16,8 +23,8 @@ const SidNavBar = ({ close }) => {
         >
           <Nav.Item
             componentClass={Link}
-            to="/profile"
-            eventKey={'/profile'}
+            to={`/profile/:${uid}`}
+            eventKey={`/profile/:${uid}`}
             onSelect={close}
           >
             <Icon icon="profile" />
@@ -33,7 +40,7 @@ const SidNavBar = ({ close }) => {
             Home
           </Nav.Item>
         </Nav>
-      </Sidenav>
+      </Drawer.Body>
     </>
   );
 };

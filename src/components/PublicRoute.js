@@ -13,6 +13,9 @@ const PublicRoute = ({ children, ...routeProps }) => {
       </Container>
     );
   }
+  if (!isLoading && profile) {
+    return <Route {...routeProps}>{children}</Route>;
+  }
   return <Route {...routeProps}>{children}</Route>;
 };
 

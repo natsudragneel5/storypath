@@ -6,6 +6,8 @@ import 'firebase/storage';
 const config = {
   apiKey: 'AIzaSyDHcG14U_fDLbWu2aTpLC0w9R1p0RXY-XA',
   authDomain: 'storypath-69c2a.firebaseapp.com',
+  databaseURL:
+    'https://storypath-69c2a-default-rtdb.asia-southeast1.firebasedatabase.app',
   projectId: 'storypath-69c2a',
   storageBucket: 'storypath-69c2a.appspot.com',
   messagingSenderId: '712907853305',

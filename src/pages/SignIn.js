@@ -1,22 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import firebase from 'firebase/app';
-import { Container, Grid, Row, Col, Panel, Button, Icon, Alert } from 'rsuite';
+import {
+  Container,
+  Grid,
+  Row,
+  Col,
+  Panel,
+  Button,
+  Icon,
+  Alert,
+  Loader,
+} from 'rsuite';
 import { auth, database } from '../misc/firebase';
+import { Link } from 'react-router-dom';
 
 // eslint-disable-next-line arrow-body-style
 const SignIn = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const signInWithProvider = async provider => {
     try {
+      setIsLoading(true);
       const { additionalUserInfo, user } = await auth.signInWithPopup(provider);
+      Alert.success('Signed in', 4000);
+      setIsLoading(false);
       if (additionalUserInfo.isNewUser) {
         await database.ref(`/profiles/${user.uid}`).set({
           name: user.displayName,
           createdAt: firebase.database.ServerValue.TIMESTAMP,
+          accountType: 'basic',
+          topBanner: 'default',
+          leftBanner: 'default',
+          rightBanner: 'default',
         });
       }
-      Alert.success('Signed in', 4000);
     } catch (err) {
-      Alert.info(err.message, 4000);
+      setIsLoading(false);
+      Alert.error(err.message, 4000);
     }
   };
   const onFacebookSignIn = () => {
@@ -26,6 +45,26 @@ const SignIn = () => {
   const onGoogleSignIn = () => {
     signInWithProvider(new firebase.auth.GoogleAuthProvider());
   };
+  if (isLoading) {
+    return (
+      <Container>
+        <Loader center vertical size="md" content="Loading" speed="slow" />
+      </Container>
+    );
+  }
+  if (!isLoading && auth.currentUser) {
+    return (
+      <Container>
+        <Grid>
+          <h3>Already Logged in</h3>
+          <h6>
+            Click <Link to="/">here</Link> to go to Home Page
+          </h6>
+        </Grid>
+      </Container>
+    );
+  }
+
   return (
     <Container>
       <Grid className="mt-page">

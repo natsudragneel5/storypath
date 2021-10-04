@@ -1,29 +1,42 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useLocation } from 'react-router';
-import { Button, Drawer, Icon } from 'rsuite';
+import { Alert, Button, Drawer, Icon } from 'rsuite';
 import SideNavBar from '.';
+import { useProfile } from '../../context/profile.context';
 import { useModalState } from '../../misc/custom-hooks';
+
+import { auth, database } from '../../misc/firebase';
 
 // eslint-disable-next-line arrow-body-style
 const DashboardButton = () => {
   const location = useLocation();
-  const canDisplay = location.pathname !== '/signin';
+  const { profile, isLoading } = useProfile();
   const { isOpen, open, close } = useModalState();
-  return (
-    <div className="pt-1">
-      {canDisplay && (
+
+  const onSignOut = useCallback(() => {
+    auth.signOut();
+    Alert.info('Signed out', 4000);
+    close();
+  });
+  if (profile && !isLoading) {
+    return (
+      <div className="pt-1 dashboard-button">
         <Button color="blue" onClick={open}>
           <Icon icon="dashboard" />
         </Button>
-      )}
-      <Drawer show={isOpen} onHide={close} placement="left">
-        <Button onClick={close}>
-          <Icon icon="window-close" />
-        </Button>
-        <SideNavBar close={close} />
-      </Drawer>
-    </div>
-  );
+
+        <Drawer show={isOpen} onHide={close} placement="left">
+          <SideNavBar
+            close={close}
+            onSignOut={onSignOut}
+            location={location}
+            profile={profile}
+          />
+        </Drawer>
+      </div>
+    );
+  }
+  return <></>;
 };
 
 export default DashboardButton;
