@@ -6,6 +6,17 @@
         ".write": "$user_id === auth.uid"
       }
     },
+    "books": {
+      ".read": "auth !== null",
+      ".write": "auth !=null",
+      "$book_id": {
+        ".read": "auth !== null",
+        ".write": "data.child('owner').val() === auth.uid || data.child('author').val() === auth.uid ||data.child('writeAccess').val()=== 'public'"
+      }
+    },
+    "activity": {
+      ".write": "auth !== null"
+    },
     ".read": false,
     ".write": false
   }

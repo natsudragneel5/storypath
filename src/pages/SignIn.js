@@ -28,6 +28,7 @@ const SignIn = () => {
           name: user.displayName,
           createdAt: firebase.database.ServerValue.TIMESTAMP,
           accountType: 'basic',
+          avatar: 'default',
           topBanner: 'default',
           leftBanner: 'default',
           rightBanner: 'default',
@@ -74,7 +75,7 @@ const SignIn = () => {
               <div className="text-center">
                 <h2>Welcome to Story Path</h2>
                 <p>
-                  Creat your own story, or select a path to follow from someone
+                  Create your own story, or select a path to follow from someone
                   else&apos;s
                 </p>
               </div>

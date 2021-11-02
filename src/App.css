@@ -1,6 +1,11 @@
 .App {
   text-align: center;
 }
+.avatar-img-large {
+  height: 10vh;
+  width: 10vw;
+  margin-right: 3vw;
+}
 .dashboard-button {
   position: fixed;
   z-index: 2;
@@ -10,27 +15,136 @@
   flex-direction: column;
 }
 .profileTopContainer {
-  height: 14vh;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  height: 25vh;
   display: flex;
   flex-direction: row;
+  border-radius: 8px;
 }
 .profileTopItems {
-  margin-top: 7vh;
-  margin-left: 24vw;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  margin-top: 6vh;
+  margin-left: 5vw;
+  width: 80vw;
+  border-radius: 8px;
+}
+.edit-profile-btn {
+  margin-left: 31vw;
+}
+.adsbygoogle {
+  display: block;
+  width: 20vw;
+  height: 74vh;
+  border: 2px solid white;
 }
 .profileBottomContainer {
   display: flex;
   flex-direction: row;
-}
-.leftBanner {
-  width: 20vw;
-  height: 86vh;
+  height: 74vh;
 }
 .activity {
-  width: 80vw;
-  height: 86vh;
+  width: 75vw;
+  height: 74vh;
 }
-.rightBanner {
-  width: 20vw;
-  height: 86vh;
+@media only screen and (min-width: 600px) {
+  /* For tablet*/
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .App {
+    text-align: center;
+  }
+  .avatar-img-large {
+    margin-right: 3vw;
+    height: 8vh;
+    width: 8vw;
+  }
+  .dashboard-button {
+    position: fixed;
+    z-index: 2;
+  }
+  .profilePageContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .profileTopContainer {
+    margin-left: 2vw;
+    margin-right: 2vw;
+    height: 20vh;
+    display: flex;
+    flex-direction: row;
+    border-radius: 8px;
+  }
+  .profileTopItems {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    margin-top: 8vh;
+    margin-left: 10vw;
+    width: 80vw;
+    border-radius: 8px;
+  }
+  .edit-profile-btn {
+    margin-left: 31vw;
+  }
+  .profileBottomContainer {
+    display: flex;
+    flex-direction: row;
+  }
+  .activity {
+    width: 60vw;
+  }
+}
+@media only screen and (min-width: 1350px) {
+  /* For desktop(XL screen): */
+  .App {
+    text-align: center;
+  }
+  .avatar-img-large {
+    margin-right: 3vw;
+    height: 8vh;
+    width: 5vw;
+  }
+  .dashboard-button {
+    position: fixed;
+    z-index: 2;
+  }
+  .profilePageContainer {
+    padding-left: 15vw;
+    padding-right: 15vw;
+    display: flex;
+    flex-direction: column;
+  }
+  .profileTopContainer {
+    margin-left: 2vw;
+    margin-right: 2vw;
+    height: 20vh;
+    display: flex;
+    flex-direction: row;
+    border-radius: 8px;
+  }
+  .profileTopItems {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    margin-top: 8vh;
+    margin-left: 10vw;
+    width: 80vw;
+    max-width: 600px;
+    border-radius: 8px;
+  }
+  .edit-profile-btn {
+    margin-left: 31vw;
+  }
+  .profileBottomContainer {
+    display: flex;
+    flex-direction: row;
+  }
+  .activity {
+    width: 60vw;
+  }
 }
