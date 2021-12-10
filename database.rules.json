@@ -1,14 +1,14 @@
 {
   "rules": {
     "profiles": {
+      ".read": "auth !== null",
       "$user_id": {
-        ".read": "auth !== null",
         ".write": "$user_id === auth.uid"
       }
     },
     "books": {
       ".read": "auth !== null",
-      ".write": "auth !=null",
+      ".write": "auth !== null",
       "$book_id": {
         ".read": "auth !== null",
         ".write": "data.child('owner').val() === auth.uid || data.child('author').val() === auth.uid ||data.child('writeAccess').val()=== 'public'"

@@ -30,7 +30,6 @@ const bookReducer = books => {
           Alert.info(`New Book Addes ${action.payload.name} created`, 4000);
         } catch (err) {
           Alert.error(err.message, 4000);
-          console.log(err.message);
         }
         return state;
       case 'Remove Book':
@@ -68,5 +67,4 @@ export const BookProvider = ({ children }) => {
     </BookContext.Provider>
   );
 };
-
 export const useBooks = () => useContext(BookContext);

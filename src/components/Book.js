@@ -1,12 +1,10 @@
-import React, { memo, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'rsuite';
+import TimeAgo from 'react-timeago';
 
-const Book = ({ book }) => {
+const Book = ({ book, authorName }) => {
   const { cover, name, id, owner, writeAccess, createdAt, depth, description } =
     book;
-  const { authors, isLoading } = useAuthor();
-  console.log(authors);
   return (
     <div
       style={{
@@ -19,15 +17,15 @@ const Book = ({ book }) => {
       <div style={{ display: 'flex', flexDirection: 'row', marginLeft: '4vw' }}>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div>
-            <label>name:</label>
+            <label>name: </label>
             {name}
           </div>
           <div>
-            <label>owner:</label>
-            {owner}
+            <label>owner: </label>
+            <Link to={`/profile/:${owner}`}>{authorName}</Link>
           </div>
           <div>
-            <label>depth:</label>
+            <label>depth: </label>
             {depth}
           </div>
         </div>
@@ -38,13 +36,17 @@ const Book = ({ book }) => {
             marginLeft: '4vw',
           }}
         >
-          <div>createdAt</div>
+          <div>
+            <label>createdAt: </label>
+            <TimeAgo date={new Date(createdAt)} />
+          </div>
           <Link
             style={{
               font: 'bold 11px Arial',
               textDecoration: 'none',
               backgroundColor: 'aquamarine',
               color: '#333333',
+              width: '50px',
               padding: '2px 6px 2px 6px',
               borderRadius: '25px',
             }}
@@ -54,9 +56,9 @@ const Book = ({ book }) => {
           </Link>
         </div>
       </div>
-      <p>Description:{description}</p>
+      <p>Description: {description}</p>
     </div>
   );
 };
 
-export default memo(Book);
+export default Book;

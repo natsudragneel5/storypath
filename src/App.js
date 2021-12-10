@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import '../src/App.css';
 import 'rsuite/dist/styles/rsuite-default.css';
 import './styles/main.scss';
 import { Switch } from 'react-router';
-import { Suspense, lazy } from 'react';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import { BookProvider } from './context/book.context';
